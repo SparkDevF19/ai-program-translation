@@ -18,7 +18,7 @@ import dgl
 # get data
 with open('./data/preprocessed_progs_train.json') as data:
     loaded_data = json.load(data)
-    target = data[0]["target_ast"]["children"]
+    target = loaded_data[0]["target_ast"]["children"]
     for key in target:
         print(key)
 
@@ -97,7 +97,7 @@ class TreeLSTM(nn.Module):
         self.cell = cell(x_size, h_size)
 
     def forward(self, batch, h, c):
-        """Compute tree-lstm prediction given a batch.
+        Compute tree-lstm prediction given a batch.
         Parameters
         ----------
         batch : dgl.data.SSTBatch
@@ -110,7 +110,7 @@ class TreeLSTM(nn.Module):
         -------
         logits : Tensor
             The prediction of each node.
-        """
+        
         g = batch.graph
         g.register_message_func(self.cell.message_func)
         g.register_reduce_func(self.cell.reduce_func)
@@ -130,11 +130,10 @@ class TreeLSTM(nn.Module):
 
 
 
-'''
 
 
 
-'''
+
 # train network
 for epoch in range(2):  # loop over the dataset multiple times
 
@@ -160,4 +159,4 @@ for epoch in range(2):  # loop over the dataset multiple times
             running_loss = 0.0
 
 print('Finished Training')
-'''
+"""
