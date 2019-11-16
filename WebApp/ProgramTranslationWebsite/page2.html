@@ -1,0 +1,67 @@
+<!--This is the second page of the website-->
+<!DOCTYPE html>
+<html lang ="en">
+    <head> 
+        <meta charset="UTF-8">
+        <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible"content="ie-edge">
+        <title> Program Translation Selection </title>
+        <link rel="stylesheet" href="style.css">
+    </head> 
+
+<body>
+ 
+ <div id="particles-js">
+
+    <div class="btext">    
+        <h2 style = "text-align: center;">Select Your Language Option</h2>  
+
+        <div class ="lanSelect">
+            <select id="option" onchange="getOption();">
+                <option style="display: none">--Selections--</option>
+                <option value="CS/TS">CoffeeScript > JavaScript</option>
+                <option value="TS/CS">JavaScript > CoffeeScript</option>
+            </select>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="translation.html" class="btn2">Next</a>
+        </div>
+        
+        
+    </div> 
+    
+
+    </div>
+            <!--right now figure out getting user choice and switch to appropriate page this may not be needed but eh
+            we can also use it as a placeholder then add constraingts like if they type in python give error message and reload page idk -->
+    <script>
+       
+        function getOption(){
+
+            var selectedValue = document.getElementById("lanSelect");
+            console.log(selectedValue);
+
+        }
+        
+    </script>
+    
+
+    <script
+    src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js">
+    </script>
+
+    <script>
+
+        particlesJS.load('particles-js', 'particles.json',
+        function(){
+        console.log('particles.json has loaded');
+        
+    });
+    
+    </script>
+
+</body>
+</html>
+
