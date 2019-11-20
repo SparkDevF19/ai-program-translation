@@ -1,40 +1,39 @@
 # Implementation from https://github.com/dmlc/dgl/blob/master/examples/pytorch/tree_lstm/tree_lstm.py
 import sys
 import os
+import torch as th
 import torch.nn as nn
-from .treelstm import TreeLSTM, Tree, BatchedTree
-import json
+import torch.nn.functional as F
+import torch.optim as optim
+
+# tree LSTM cell for binary trees
+class BinaryTreeLSTMCell(nn.Module):
+  def __init__(self, in_dim, h_dim):
+    super().__init__()
+    iou_x = nn.Linear(in_dim, h_dim * 3)      # i, o, u matrices for x
+    iou_h = nn.Linear(h_dim, h_dim * 3)       # i, o, u matrices for h
+    f_x = nn.Linear(in_dim, h_dim)            # forget for x
+    lf_h = nn.Linear(h_dim, h_dim)            # forget for left nodes' hidden state
+    rf_h = nn.Linear(h_dim, h_dim)            # forget for right node's hidden state
 
 
-# get data
-with open('./data/preprocessed_progs_train.json') as data:
-    loaded_data = json.load(data)
-    # TODO do some stuff here
+  def forward(self, x, lh, rh):
+    i, o, u = th.split(ioux, 3, )             # split 
+    i = th.sigmoid(i)                         
+    o = th.sigmoid(o)
+    u = th.tanh(u)
 
-"""
-# train network
-for epoch in range(2):  # loop over the dataset multiple times
+example = TreeLSTMCell(512, 512, 2)
 
-    running_loss = 0.0
-    for i, data in enumerate(trainloader, 0):
-        # get the inputs; data is a list of [inputs, labels]
-        inputs, labels = data
+print(example.layers[0])
 
-        # zero the parameter gradients
-        optimizer.zero_grad()
+# Attetion class
 
-        # forward + backward + optimize
-        outputs = net(inputs)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
+# decoder class
 
-        # print statistics
-        running_loss += loss.item()
-        if i % 2000 == 1999:    # print every 2000 mini-batches
-            print('[%d, %5d] loss: %.3f' %
-                  (epoch + 1, i + 1, running_loss / 2000))
-            running_loss = 0.0
-
-print('Finished Training')
-"""
+# tree-to-tree class
+class TreeToTree(nn.Module)
+  def __init__(self, encoder, decoder):
+    super().__init__()
+    self.encoder = encoder
+    self.decoder = decoder
