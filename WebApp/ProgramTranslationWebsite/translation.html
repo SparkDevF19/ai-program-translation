@@ -16,42 +16,68 @@
 
     <div class="btext">    
     
-        <p style = "text-align: center;">Enter your code here (place arrow direction) <br> Click the "Start Translation" button to see your translated code!</p>
+        <p style = "text-align: center;"> When You Enter Your Code It'll Appear In The Right Box Below!</p>
+        <p id="arrowText">Enter Your Code Here!</p>
+
+    <div id="box">
+        
+        <div style="float:left;">
+
+            <form>
+                <textarea id ="textarea1"
+                 placeholder="
+        //The code here will translate in the next box over >>
+
+                //JavaScript Example:
+                function sayHello(){
+                    return('Hello there');
+                 }
+                  
+                 function expressions
+                 var message = function sayHello(){
+                    return(&quot Hello there &quot);
+                 }"
+               ></textarea>
+
+         <!--<input type="submit" value="Start Translation" id="btn3"> will most likely have to uncomment this to be within form -->
+         </form>
+      </div>    
 
 
-    <div style="float: left;">  
 
-        <form>
-            <fieldset>
-                <legend> surrounding box </legend>
-                <p>
-                    <label>Input Code</label>
-                    <input type="text" id= "textInput" value="input code here"/>
-                </p>
+<!--Will most likely not use form to show code output-->
+     <div style="float:right";>
 
-            </fieldset>
+         <form>
+             <textarea id="textarea2" readonly>
+         #This is where your code is going to be translated
+
+                #CoffeeScript Example: 
+                 (function() {
+                    var greet;
+                    
+                    greet = function() {
+                      return "This is an example of a function";
+                    };
+                  
+                  }).call(this);
+             </textarea>
+             <!--Alex just leaving little notes for you, switch readonly to placeholder like the first box and but the code
+            you have already to get the message that is inputed include inside the textarea-->
         </form>
-    </div>    
 
-    <div style="float:right";>
+     </div>
 
-        <form>
-            <fieldset>
-                <legend> output box</legend>
-                <p>
-                    <label>Output</label>
-                    <input type="text" id= "textInput" value="input code here"/>
-                </p>
-
-            </fieldset>
-        </form>
-
+   <a href="index.html" class="btn3">Start Translation</a>
     </div>
-    <!--
-        <div style="text-align: center;"><a href="page2.html" class="btn3">Start Translation</a></div>
+    
+    <div class="arrow">
+        <div class="curve"></div>
+        <div class="point"></div>
+    </div>
 
-    </div> 
-    -->
+        </div> 
+    
     </div>
 
     <script
