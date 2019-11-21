@@ -119,13 +119,13 @@ h2{
 }
 
 #textarea1{
-    width: 300%;
+    width: 290%;
     height: 70vh;
     color: #ffffff;
     border: 2px solid #cccccc;
     border-radius: 4px;
     background-color: #000000;
-    font-size: 20px;
+    font-size: 56%;
     float: left;
     resize:none;
     
@@ -140,7 +140,7 @@ h2{
     border: 2px solid #cccccc;
     border-radius: 4px;
     background-color: #000000;
-    font-size: 20px;
+    font-size: 56%;
     float: right;
     resize: none;   
 }
