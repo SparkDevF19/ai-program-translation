@@ -1,16 +1,16 @@
+
 body{   
-    
     margin: 0;
     padding: 0;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 20px;
-}
+    font-family: 'Roboto', sans-serif;
 
+    font-size: 30px;
+}
 
 .btext{
 
     color: #ffffff;
-    line-height: 0.4cm;
+    line-height: 0.8cm;
     position: absolute;
 }
 
@@ -18,10 +18,7 @@ h1{
     font-size: 50px;
 }
 
-
-
 .btn{
-
 
     color: #ffffff;
     text-decoration: none;
@@ -81,8 +78,13 @@ h2{
 /*items starting from here are page 3 contents*/
 
 .btn3{
-
-    color: #ffffff;
+    position: relative;
+    top: 77% ;
+    left: 27%;
+    width: 50%;
+    height: 40px;
+    color: #000000;
+    background-color: #ffffff77;
     text-decoration: none;
     border: #ffffff 1px solid;
     padding: 10px 15px;
@@ -92,15 +94,112 @@ h2{
 }
 .btn3:hover{
     
-    color: #000000;
+    
     border: #cccccc 1px solid;
 }
 
+#box{
+    width: 130vh;
+    height: 78vh;
+    border-radius: 5px;
+    border-radius: 5px;
+    background-color: #f2f2f262;
+    opacity: 0.9;
+    padding: 20px; 
+    
+}
+
+#textarea1{
+    width: 315%;
+    height: 70vh;
+    color: #ffffff;
+    border: 2px solid #cccccc;
+    border-radius: 4px;
+    background-color: #000000;
+    font-size: 20px;
+    float: left;
+    resize:none;
+    
+    
+}
+#textarea2{
+    width: 300%;
+    height: 70.5vh;
+    color: #ffffff;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #cccccc;
+    border-radius: 4px;
+    background-color: #000000;
+    font-size: 20px;
+    float: right;
+    resize: none;   
+}
+
+
+/* Arrow */
+#arrowText{
+position: absolute;
+right: 100%;
+bottom: 90%;
+
+
+}
+.arrow {
+ position: absolute;
+ right: 100%;
+ bottom: 70%;
+ width: 100px;
+}
+
+.arrow .curve {
+	border: 2px solid #ffffff;
+	border-color: transparent transparent transparent rgba(255, 255, 255, 0.925);
+	height: 260px;
+	width: 1200px;
+	border-radius: 230px 0 0 150px;
+}
+
+.arrow .point {
+	position: absolute;
+	left: 28px;
+	top: 228px;
+}
+
+.arrow .point:before, .arrow .point:after {
+	border: 1px solid rgba(255, 255, 255, 0.925);
+	height: 25px;
+	content: "";
+	position: absolute;
+}
+
+.arrow .point:before {
+	top: -11px;
+	left: -11px;
+	transform:rotate(-74deg);
+	-webkit-transform:rotate(-74deg);
+  -moz-transform:rotate(-74deg);
+  -ms-transform: rotate(-74deg);
+}
+
+.arrow .point:after {
+    top: -20px;
+	left: 5px;
+    transform:rotate(12deg);
+  -webkit-transform: rotate(12deg);
+  -moz-transform:rotate(12deg);
+  -ms-transform: rotate(12deg);
+}
+
+
+
+
+/*For particles and background page elements*/
 
 #particles-js{
 width: 100%;
 height: 100vh;
-background: linear-gradient(to bottom, #c20020 0%, #b83c03 50%, #f5b505 100%);
+background: linear-gradient(to bottom, #da082b 0%, #e04e0a 50%, #cc8a10 100%);
 display: flex;
 justify-content: center;
 align-items: center;
