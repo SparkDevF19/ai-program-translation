@@ -23,9 +23,10 @@
         
         <div style="float:left;">
 
-            <form>
-                <textarea id ="textarea1"
-                 placeholder="
+            <form action="{{ url_for('translation')}}" method="POST">
+                <textarea id ="textarea1" name=code placeholder=comment>
+                {{comment}}
+                    <!-- might have to remove this example code later -->
   //The code here will translate in the next box >>
 
          //JavaScript Example:
@@ -39,7 +40,7 @@
              }"
                ></textarea>
 
-         <!--<input type="submit" value="Start Translation" id="btn3"> will most likely have to uncomment this to be within form -->
+         <input type="submit" value="Start Translation" id="btn3">
          </form>
       </div>    
 
@@ -48,8 +49,10 @@
 <!--Will most likely not use form to show code output-->
      <div style="float:right";>
 
-         <form>
+         <form method="POST" enctype=multipart/form-data>
              <textarea id="textarea2" readonly>
+                 {{code}}
+            <!-- may have to remove this code later as well -->
     #This is where your code is going to be translated
 
          #CoffeeScript Example: 
