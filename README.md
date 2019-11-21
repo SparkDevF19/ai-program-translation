@@ -1,4 +1,4 @@
-# ai-program-translation
+# Program Translator AI
 
 ### Objective
 The goal of this project was to make a program translation AI that can convert code from one language to another to help developers in migrating legacy code and make collaboration easier. To this end, we employed a tree-to-tree neural network with encoder-decoder architecture and attention mechanism based on Dr. Chen’s paper.
