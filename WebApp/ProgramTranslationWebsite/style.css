@@ -79,8 +79,8 @@ h2{
 
 .btn3{
     position: relative;
-    top: 73% ;
-    left: 24%;
+    top: 72% ;
+    left: 18%;
     width: 50%;
     height: 40px;
     color: #000000;
@@ -90,7 +90,6 @@ h2{
     padding: 10px 15px;
     border-radius: 8px;
     line-height: 10cm;
-    text-align: center;
     
 }
 .btn3:hover{
@@ -110,37 +109,29 @@ h2{
     
 }
 
-#left {
-    width: 16%;
-}
-
-#right {
-    width: 16%;
-}
-
 #textarea1{
-    width: 290%;
+    width: 230%;
     height: 70vh;
     color: #ffffff;
     border: 2px solid #cccccc;
     border-radius: 4px;
     background-color: #000000;
-    font-size: 56%;
+    font-size: 20px;
     float: left;
     resize:none;
     
     
 }
 #textarea2{
-    width: 300%;
-    height: 70.5vh;
+    width: 230%;
+    height: 71vh;
     color: #ffffff;
     padding: 12px 20px;
     box-sizing: border-box;
     border: 2px solid #cccccc;
     border-radius: 4px;
     background-color: #000000;
-    font-size: 56%;
+    font-size: 20px;
     float: right;
     resize: none;   
 }
@@ -149,21 +140,17 @@ h2{
 /* Arrow */
 #arrowText{
 position: absolute;
-right: 105%;
-bottom: 80%;
+right: 101%;
+bottom: 85%;
+font-size: large;
 
 
 }
 .arrow {
  position: absolute;
- right: 105%;
- bottom: 57%;
- width: 50px;
- -webkit-transform:rotate(-30deg);
- -moz-transform: rotate(-30deg);
- -ms-transform: rotate(-30deg);
- -o-transform: rotate(-30deg);
- transform: rotate(-30deg);
+ right: 100%;
+ bottom: 60%;
+ width: 100px;
 }
 
 .arrow .curve {
