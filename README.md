@@ -17,5 +17,5 @@ This model would then be saved to be used in our Flask web app that takes in a p
 
 ![](SelectLanguage.JPG)
 
-![](Translator.JPG)
+![](TranslatorPage.JPG)
 
