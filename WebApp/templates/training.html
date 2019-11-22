@@ -1,0 +1,44 @@
+<!---This is the current homepage of the website
+note untill I figure out why it shows fine in live server (the extenstion on VSC) please load webpage on live sever -->
+<!DOCTYPE html>
+<html lang ="en">
+    <head> 
+        <meta charset="UTF-8">
+        <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible"content="ie-edge">
+        <title> Training in Progress </title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    </head> 
+<body>
+ 
+    <div id="particles-js">
+
+    <div class="btext">    
+        
+        <h1 style = "text-align: center;"> Training In Progress Stay Tuned For More!</h1>
+        
+    <!--   <div style="text-align: center;"><a href="{{ url_for('page2') }}" class="btn">Start</a></div>-->
+
+    </div> 
+    
+    </div>
+
+    <script
+    src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js">
+    </script>
+
+    <script>
+        particlesJS.load('particles-js', 'particles.json',
+        function(){
+        console.log('particles.json has loaded');
+
+        
+    });
+    
+    </script>
+
+</body>
+</html>
+
