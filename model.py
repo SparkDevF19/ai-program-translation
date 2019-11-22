@@ -23,11 +23,13 @@ class BinaryTreeLSTMCell(nn.Module):
         self.f_h = nn.ModuleList([[nn.Linear(h_dim, h_dim), nn.Linear(h_dim, h_dim)],
                                 [nn.Linear(h_dim, h_dim), nn.Linear(h_dim, h_dim)]])
 
-# takes in input, cell states, and hidden states
+    # takes in input, cell states, and hidden states
     def forward(self, x, hl, hr, cl, cr):
         # i, o, u, gates
         self.iou = self.iou_x(x) + self.iou_hl(hl) + self.iou_hr(hr)
-        i, o, u = th.split(iou, iou.size(1) // 3, dim=1)      # split
+
+        # split
+        i, o, u = th.split(iou, iou.size(1) // 3, dim=1)      
 
         # apply activation functions
         i = F.sigmoid(i)                         
@@ -42,9 +44,10 @@ class BinaryTreeLSTMCell(nn.Module):
         c = i * u + fl * cl + fr * cr
         h = o * F.tanh(c)
 
+        # return hidden state and cell state
         return h, c
 
-# encoder
+# TreeLSTM encoder
 class Encoder(nn.Module):
     def __init__(self, in_dim, h_dim):
         super().__init__()
@@ -52,12 +55,36 @@ class Encoder(nn.Module):
         self.initial_c = 0
         self.tree_cell = BinaryTreeLSTMCell(in_dim, h_dim)
         self.embed = nn.Embedding(in_dim, )
+        
+        # recursive method to compute embeddings for source tree and each sub-tree
+        # for every tree in the graph
+        if (source_container[0].successors(0)):
+           
 
+        
+        
+        
 # Attention class
 
-# decoder class
-class Decoder:
-    pass
+# Decoder generates the target tree starting from a single root node
+class Decoder(nn.Module):
+    def __init__(self, embedding_size, h_dim):
+        super().__init__()  
+        self.loss_func = nn.CrossEntropyLoss() 
+        # compute lstm state of root of source tree
+        if (source_container[0].ndata['info'][0]):      
+            lstm = nn.LSTM(embedding_size, h_dim)
+            source_container[0].ndata['info'][0] = lstm
+            nodes_to_expand = []
+            if (nodes_to_expand.isEmpty()):
+                return
+            else:
+                nodes_to_expand.pop()
+                
+        
+        
+        # feed embedding of expanding node to softmax regression network
+        t = F.softmax()
 
 # tree-to-tree class
 """
