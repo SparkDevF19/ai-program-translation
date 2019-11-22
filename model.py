@@ -5,6 +5,7 @@ import torch as th
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
+import dgl
 
 #in_dim =
 #h_dim =
@@ -53,6 +54,8 @@ class Encoder(nn.Module):
         super().__init__()
         self.initial_h = 0
         self.initial_c = 0
+        self.in_dim = in_dim
+        self.h_dim = h_dim
 
         # Dropout Layer (may be useful) (TODO:tune hyperparameters)
         self.drop = nn.Dropout(p=0.5, inplace=False)
@@ -61,32 +64,176 @@ class Encoder(nn.Module):
         self.tree_cell = BinaryTreeLSTMCell(in_dim, h_dim)
         self.embed = nn.Embedding(in_dim, embedding_size)
 
+    # compute embeddings for source tree and subtrees
     def forward(self, batch):
-        for tree in batch:
-            if (batch[0]== null):
-                return
+        # 
+        binary_cell = BinaryTreeLSTMCell(in_dim, h_dim)
 
-# Attention class
+        # iterate through each tree in batch
+        for tree in batch:
+            # hidden state
+            hr = 0
+            hl = 0
+
+            # cell state
+            cr = 0
+            cl = 0
+
+            # iterate postorder over the tree, passing each layer to the lstm cell
+            current = 0
+            nodes_stack = []
+
+            while(True):
+                # while root is not empty
+                while (tree.successors(current).size() != 0):
+                    nodes_stack.append(tree.successors(current[1]))
+                    nodes_stack.append(current)
+                
+                current = tree.successors(current)[0]
+                current = nodes_stack.pop()
+                
+                if (tree.successors.size() != 1 and tree.successors(current)[1] in nodes_stack):
+                    nodes_stack.pop()
+                    nodes_stack.append(current)
+                    current = tree.successors(current)[1]
+
+                else:
+                    # run binary lstm for node
+                    x = tree[current].ndata['info']
+                    h, c = binary_cell.forward(x, hl, hr, cl, cr)
+                    tree[current].ndata['e'] = self.embed(x)
+                    tree[current].ndata['h'] = h
+                    tree[current].ndata['c'] = c
+
+                # stack is empty
+                if (len(nodes_stack) == 0):
+                    break
+
+
+            '''
+            # base case (LOOK AT SYNTAX)
+            if (tree[0].successors(0).ndata['info'][0]== None):
+                return
+            # compute embeddings 
+            else:
+                x = tree[node_initial].ndata['info']
+                hl, cl = binary_cell.forward()
+                hr, cr = binary_cell.forward()
+                binary_cell.forward(x, hl, hr, cl, cr)'''
+
+
+
+# Attention class to locate the source sub-tree
+class Attention(nn.Module):
+    def __init__(self, h_dim):
+        # Weights matrices of size d * d (d is the embedding dimension)
+        self.h_dim = h_dim
+        W_0 = nn.Linear(h_dim, h_dim)
+        W_1 = nn.Linear(h_dim, h_dim)
+        W_2 = nn.Linear(h_dim, h_dim)
+        
+    # get the source tree
+    def forward(self, tree, h_t):
+        # calculate probability while doing post-order traversal through tree
+        current = 0
+        nodes_stack = []
+
+        while(True):
+            
+            # expectation
+            e_s = th.zeros(h_dim)
+            
+            # while root is not empty
+            while (tree.successors(current).size() != 0):
+                nodes_stack.append(tree.successors(current[1]))
+                nodes_stack.append(current)
+                
+                current = tree.successors(current)[0]
+                current = nodes_stack.pop()
+                
+                if (tree.successors.size() != 1 and tree.successors(current)[1] in nodes_stack):
+                    nodes_stack.pop()
+                    nodes_stack.append(current)
+                    current = tree.successors(current)[1]
+
+                else:
+                    # calculate probability
+                    p = th.exp(tree[current].ndata['h'].transpose() * self.W_0(h_t))
+                    
+                    # compute expectation of h_t to be throughout all the nodes in the tree
+                    e_s += tree[current].ndata['h'] * p
+
+                if (len(nodes_stack) == 0):
+                    break
+
+            # compute e_t by combining W_1, W_2, e_s, and h_t and pass through activation function tanh
+            e_t = F.tanh(self.W_1(e_s) + self.W_2(h_t))
+
+            return e_t
+
+        
 
 # Decoder generates the target tree starting from a single root node
 class Decoder(nn.Module):
-    def __init__(self, embedding_size, h_dim):
+    def __init__(self, e_t, h_dim, vocab_size):
         super().__init__()  
-        self.loss_func = nn.CrossEntropyLoss() 
-        # compute lstm state of root of source tree
-        if (source_container[0].ndata['info'][0]):      
+        # trainable matrix of vocab size of outputs and embedding dimension
+        self.W_tt = nn.Linear(h_dim, vocab_size)
+        self.B_t = nn.Linear(h_dim, vocab_size)
+        
+        # attention mechanism
+        self.attention = Attention(h_dim)
+        
+    # generate target tree from source tree
+    def forward(self, tree):      
+        # make tree with one node
+        target_tree = dgl.DGLGraph(1)
+        
+        # copy LSTM state from encoder of root of source tree and attach to root of target tree until empty list
+        target_tree[0].ndata['h'] = tree[0].ndata['h']
+        
+        # initialize expanding node queue
+        nodes_queue = [0]
+        current = 0
+        # if not empty, generate two nodes
+        while (nodes_queue):
+            # current node is the first one in queue
+            current = nodes_queue.pop(0)
+
+            # compute e_t
+            e_t = attention.forward(tree, target_tree[current].ndata['h'])
+
+            # feed it into softmax regression network to get our token
+            t_t = th.max(F.softmax(W_tt(e_t)))
+
+            # if t_t == EOS token, TODO: figure this out
+            #   continue
+            # else:
+            #   target_tree.add_nodes(2)
+            #   target_tree.add_edges([current, current], [len(target_tree) - 1, len(target_tree) - 2])
+
+        # add to expanding node queue
+
+        # pop from queue
+
+
+
+        
+
+
+
+
+
+"""        
+        if (source_container[0].ndata[''][0]):      
             lstm = nn.LSTM(embedding_size, h_dim)
             source_container[0].ndata['info'][0] = lstm
             nodes_to_expand = []
             if (nodes_to_expand.isEmpty()):
                 return
             else:
-                nodes_to_expand.pop()
+                nodes_to_expand.pop()"""
                 
-        
-        
-        # feed embedding of expanding node to softmax regression network
-        t = F.softmax()
 
 # tree-to-tree class
 """
