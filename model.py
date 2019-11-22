@@ -49,21 +49,23 @@ class BinaryTreeLSTMCell(nn.Module):
 
 # TreeLSTM encoder
 class Encoder(nn.Module):
-    def __init__(self, in_dim, h_dim):
+    def __init__(self, in_dim, h_dim, embedding_size):
         super().__init__()
         self.initial_h = 0
         self.initial_c = 0
-        self.tree_cell = BinaryTreeLSTMCell(in_dim, h_dim)
-        self.embed = nn.Embedding(in_dim, )
-        
-        # recursive method to compute embeddings for source tree and each sub-tree
-        # for every tree in the graph
-        if (source_container[0].successors(0)):
-           
 
-        
-        
-        
+        # Dropout Layer (may be useful) (TODO:tune hyperparameters)
+        self.drop = nn.Dropout(p=0.5, inplace=False)
+
+        # Binary LSTM cell and embedding layer
+        self.tree_cell = BinaryTreeLSTMCell(in_dim, h_dim)
+        self.embed = nn.Embedding(in_dim, embedding_size)
+
+    def forward(self, batch):
+        for tree in batch:
+            if (batch[0]== null):
+                return
+
 # Attention class
 
 # Decoder generates the target tree starting from a single root node
