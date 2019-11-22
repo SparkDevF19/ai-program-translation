@@ -1,0 +1,12 @@
+
+//The code here will translate in the next box >>
+
+  //JavaScript Example:
+         function sayHello(){
+             return('Hello there');
+          }
+           
+      function expressions
+       var message = function sayHello(){
+         return("Hello there");
+      }

@@ -7,7 +7,7 @@
         content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible"content="ie-edge">
         <title> Program Translation </title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
     </head> 
 <body>
@@ -24,54 +24,43 @@
         <div style="float:left;">
 
             <form action="{{ url_for('translation')}}" method="POST">
-                <textarea id ="textarea1" name=code placeholder=comment>
-                {{comment}}
-                    <!-- might have to remove this example code later -->
-  //The code here will translate in the next box >>
+                <textarea id ="textarea1" class ="form-control" placeholder="{{placeholderT}}" name = inputCode ></textarea> 
+            
+            </textarea>
 
-         //JavaScript Example:
-                function sayHello(){
-                    return('Hello there');
-                 }
-                  
-             function expressions
-              var message = function sayHello(){
-                return(&quot Hello there &quot);
-             }"
-               ></textarea>
-
-         <input type="submit" value="Start Translation" id="btn3">
+        
+      <!--  {{comment}} << put this code in the textarea one and format --> 
          </form>
+
+        <!-- <input type="submit" value="Start Translation" id="btn3">   -->
+
       </div>    
 
 
-
-<!--Will most likely not use form to show code output-->
      <div style="float:right";>
 
          <form method="POST" enctype=multipart/form-data>
              <textarea id="textarea2" readonly>
-                 {{code}}
-            <!-- may have to remove this code later as well -->
-    #This is where your code is going to be translated
+
+  #This is where your code is going to be translated
 
          #CoffeeScript Example: 
                  (function() {
                     var greet;
-                    
+        
          greet = function() {
           return "This is an example of a function";
                     };
                   
-                  }).call(this);
+                  }).call(this)
+
              </textarea>
-             <!--Alex just leaving little notes for you, switch readonly to placeholder like the first box and but the code
-            you have already to get the message that is inputed include inside the textarea-->
         </form>
 
      </div>
 
-   <a href="index.html" class="btn3">Start Translation</a>
+   <a href="{{ url_for('index') }}" class="btn3">Start Translation</a>
+
     </div>
     
     <div class="arrow">

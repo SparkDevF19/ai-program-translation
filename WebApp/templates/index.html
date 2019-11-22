@@ -8,7 +8,7 @@ note untill I figure out why it shows fine in live server (the extenstion on VSC
         content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible"content="ie-edge">
         <title> Program Translation Homepage </title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
     </head> 
 <body>
@@ -19,7 +19,7 @@ note untill I figure out why it shows fine in live server (the extenstion on VSC
         
         <h1 style = "text-align: center;">SparkDev - AI</h1>
         <p style = "text-align: center;">AI Program Translation <br> A programming language translation AI built by SparkDev's 2019 AI team</p>
-        <div style="text-align: center;"><a href="page2.html" class="btn">Start</a></div>
+        <div style="text-align: center;"><a href="{{ url_for('page2') }}" class="btn">Start</a></div>
 
     </div> 
     
