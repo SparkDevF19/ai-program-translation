@@ -10,8 +10,8 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__,
     static_url_path='',
-    static_folder='C://Users/Chelsea/Desktop/ai-program-translation/WebApp/static',
-    template_folder='C://Users/Chelsea/Desktop/ai-program-translation/WebApp/templates')
+    static_folder='static',
+    template_folder='templates')
 
 #URL location, home page "/" empty slash
 @app.route('/')
