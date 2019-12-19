@@ -13,9 +13,9 @@ The encoder is a **Tree-LSTM** that recursively computes embeddings for each sub
 ### Web App
 This model would then be saved to be used in our Flask web app that takes in a program and displays the translated output.
 
-![](HomePage.JPG)
+![](WebAppPictures/HomePage.JPG)
 
-![](SelectLanguage.JPG)
+![](WebAppPictures/SelectLanguage.JPG)
 
-![](TranslatorPage.JPG)
+![](WebAppPictures/TranslatorPage.JPG)
 

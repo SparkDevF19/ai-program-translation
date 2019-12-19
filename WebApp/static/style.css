@@ -1,47 +1,42 @@
 
-body{   
+body {   
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-
     font-size: 30px;
 }
 
-.btext{
-
+.btext {
     color: #ffffff;
     line-height: 0.8cm;
     position: absolute;
 }
 
-h1{
+h1 {
     font-size: 50px;
 }
 
-.btn{
-
+.btn {
     color: #ffffff;
     text-decoration: none;
     border: #ffffff 1px solid;
     padding: 10px 15px;
     border-radius: 8px;
     line-height: 2cm;
-
 }
 
-.btn:hover{
-    
+.btn:hover {
     color: #000000;
     border: #cccccc 1px solid;
 }
+
 /*items starting from here are page 2 contents*/
 
-h2{
+h2 {
     font-size: 40px;
 }
 
-.btn2{
-
+.btn2 {
     color: #ffffff;
     text-decoration: none;
     border: #ffffff 1px solid;
@@ -49,22 +44,20 @@ h2{
     border-radius: 8px;
     line-height: 10cm;
 }
-.btn2:hover{
-    
+
+.btn2:hover {
     color: #000000;
     border: #cccccc 1px solid;
 }
 
-.lanSelect{
+.lanSelect {
     position: absolute;
     top: 29%;
     left: 50%;
     transform: translate(-50%, -50%);
-
 }
 
-.lanSelect select{
-
+.lanSelect select {
     background: #ffffff;
     opacity: 0.5;
     color: #000000;
@@ -75,9 +68,10 @@ h2{
     box-shadow: 0 5px 25px rgba(0,0,0,.5);
     text-align-last: center;
 }
+
 /*items starting from here are page 3 contents*/
 
-.btn3{
+.btn3 {
     position: relative;
     top: 72% ;
     left: 18%;
@@ -90,15 +84,13 @@ h2{
     padding: 10px 15px;
     border-radius: 8px;
     line-height: 10cm;
-    
 }
-.btn3:hover{
-    
-    
+
+.btn3:hover {
     border: #cccccc 1px solid;
 }
 
-#box{
+#box {
     width: 130vh;
     height: 78vh;
     border-radius: 5px;
@@ -106,10 +98,9 @@ h2{
     background-color: #f2f2f262;
     opacity: 0.9;
     padding: 20px; 
-    
 }
 
-#textarea1{
+#textarea1 {
     width: 230%;
     height: 70vh;
     color: #ffffff;
@@ -118,11 +109,10 @@ h2{
     background-color: #000000;
     font-size: 20px;
     float: left;
-    resize:none;
-    
-    
+    resize:none;    
 }
-#textarea2{
+
+#textarea2 {
     width: 230%;
     height: 71vh;
     color: #ffffff;
@@ -136,21 +126,19 @@ h2{
     resize: none;   
 }
 
-
 /* Arrow */
-#arrowText{
-position: absolute;
-right: 101%;
-bottom: 85%;
-font-size: large;
-
-
+#arrowText {
+    position: absolute;
+    right: 101%;
+    bottom: 85%;
+    font-size: large;
 }
+
 .arrow {
- position: absolute;
- right: 100%;
- bottom: 60%;
- width: 100px;
+    position: absolute;
+    right: 100%;
+    bottom: 60%;
+    width: 100px;
 }
 
 .arrow .curve {
@@ -192,18 +180,14 @@ font-size: large;
   -ms-transform: rotate(12deg);
 }
 
-
-
-
 /*For particles and background page elements*/
 
-#particles-js{
-width: 100%;
-height: 100vh;
-background: linear-gradient(to bottom, #da082b 0%, #e04e0a 50%, #cc8a10 100%);
-display: flex;
-justify-content: center;
-align-items: center;
-  
+#particles-js {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, #da082b 0%, #e04e0a 50%, #cc8a10 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 } 
 

@@ -1,4 +1,6 @@
 <!--This is the second page of the website-->
+
+
 <!DOCTYPE html>
 <html lang ="en">
     <head> 
@@ -7,9 +9,8 @@
         content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible"content="ie-edge">
         <title> Program Translation Selection </title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
     </head> 
-
 <body>
  
  <div id="particles-js">
@@ -26,7 +27,7 @@
         </div>
 
         <div style="text-align: center;">
-            <a href="translation.html" class="btn2">Next</a>
+            <a href="{{ url_for('translation') }}" class="btn2">Next</a>
         </div>
         
         
