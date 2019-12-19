@@ -185,63 +185,48 @@ class Decoder(nn.Module):
         self.attention = Attention(h_dim)
         
     # generate target tree from source tree
-    def forward(self, tree):      
-        # make tree with one node
-        target_tree = dgl.DGLGraph(1)
-        
-        # copy LSTM state from encoder of root of source tree and attach to root of target tree until empty list
-        target_tree[0].ndata['h'] = tree[0].ndata['h']
-        
-        # initialize expanding node queue
-        nodes_queue = [0]
-        current = 0
-        # if not empty, generate two nodes
-        while (nodes_queue):
-            # current node is the first one in queue
-            current = nodes_queue.pop(0)
+    def forward(self, batch):
+        for tree in batch:
+            # make tree with one node
+            target_tree = dgl.DGLGraph(1)
+            
+            # copy LSTM state from encoder of root of source tree and attach to root of target tree until empty list
+            target_tree[0].ndata['h'] = tree[0].ndata['h']
+            
+            # initialize expanding node queue
+            nodes_queue = [0]
+            current = 0
 
-            # compute e_t
-            e_t = attention.forward(tree, target_tree[current].ndata['h'])
+            # stop if there are no nodes left to expand
+            while (nodes_queue):
+                # current node is the first one in queue
+                current = nodes_queue.pop(0)
 
-            # feed it into softmax regression network to get our token
-            t_t = th.max(F.softmax(W_tt(e_t)))
+                # compute e_t
+                e_t = attention.forward(tree, target_tree[current].ndata['h'])
 
-            # if t_t == EOS token, TODO: figure this out
-            #   continue
-            # else:
-            #   target_tree.add_nodes(2)
-            #   target_tree.add_edges([current, current], [len(target_tree) - 1, len(target_tree) - 2])
-
-        # add to expanding node queue
-
-        # pop from queue
-
-
-
-        
-
-
-
-
-
-"""        
-        if (source_container[0].ndata[''][0]):      
-            lstm = nn.LSTM(embedding_size, h_dim)
-            source_container[0].ndata['info'][0] = lstm
-            nodes_to_expand = []
-            if (nodes_to_expand.isEmpty()):
-                return
-            else:
-                nodes_to_expand.pop()"""
+                # feed it into softmax regression network to get our token
+                t_t = th.max(F.softmax(W_tt(e_t)))
                 
+                # if t_t isn't EOS, make two children nodes
+                if (t_t != "EOS"):
+                    # make two children
+                    target_tree.add_nodes(2)
+                    target_tree([current, current], [len(target_tree) - 1, len(target_tree) - 2])
+                    
+                    # add children to queue
+                    nodes_queue.append(target_tree[current].successors()[0])
+                    nodes_queue.append(target_tree[current].successors()[1])
 
-# tree-to-tree class
-"""
-class TreeToTree(nn.Module)
+
+class TreeToTreeLSTM(nn.Module):    
     def __init__(self, encoder, decoder):
         super().__init__()
-        self.encoder = encoder
-        self.decoder = decoder
-        # hey holden
-#gentoo is an inferior race, i use arch btw
-"""
+        self.encoder = Encoder
+        self.decoder = Decoder
+
+    def forward(self, batch):
+        encoder.forward(batch)
+        decoder.forward(batch)
+
+    

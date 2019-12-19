@@ -46,7 +46,6 @@ def fill():
             location += 1
             return
         
-
 data = pd.read_json('preprocessed_progs_test.json')
 
 # vocabulary

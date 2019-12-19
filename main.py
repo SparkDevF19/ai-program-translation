@@ -2,8 +2,7 @@ from . import preprocessing
 from . import model
 #import pickle
 
-def main():
-        
+def main():  
     # hyperparameters from paper: 
     batch_size = 100
     layers = 1
